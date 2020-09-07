@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import data, { categoriesUnique, categoriesWithCounts, categoriesNameAndCount } from './data'
+import data, { categoriesUnique } from './data'
 import './App.css';
+
+categoriesUnique.push("All")
+console.log(categoriesUnique)
 
 function Products(props) {
   console.log("props: ", props)
@@ -23,21 +26,21 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-          {categoriesUnique.map((category) => {
+          {categoriesUnique.map((category) => {             
               return <button className="button-header" key={category} onClick={() => setCategory(category)}>
                 {category}
                 </button>
-            })
-          }
+            })}
+   
 
-
-      
-
-          
-          
-
-          {data.filter((item) => {     
-             return item.category === currentCategory || currentCategory === null         
+          {data.filter((item) => { 
+             console.log(currentCategory)    
+             if (currentCategory === "All") {
+              return item
+             } else {
+              return item.category === currentCategory || currentCategory === null         
+             }
+             
           }).map((obj)=> {
             return <Products product={obj}/>
           })}
