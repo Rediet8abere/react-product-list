@@ -2,6 +2,12 @@
   text-align: center;
 }
 
+.button-header-active {
+  background-color: crimson;
+  width: 100px;
+  display: inline-block;
+}
+
 .button-header {
   width: 100px;
   display: inline-block;

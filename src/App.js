@@ -27,7 +27,9 @@ function App() {
     <div className="App">
       <header className="App-header">
           {categoriesUnique.map((category) => {             
-              return <button className="button-header" key={category} onClick={() => setCategory(category)}>
+              return <button className={category === currentCategory ? "button-header-active"  : "button-header" }
+              // className="button-header" 
+              key={category} onClick={() => setCategory(category)}>
                 {category}
                 </button>
             })}
