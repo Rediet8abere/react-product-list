@@ -1,28 +1,48 @@
 import React, { useState } from 'react';
-import data, { categoriesUnique } from './data'
+import data, { categoriesUnique, categoriesWithCounts, categoriesNameAndCount } from './data'
 import './App.css';
 
 categoriesUnique.push("All")
-// console.log(categoriesUnique)
+console.log(categoriesUnique)
+console.log(categoriesWithCounts)
+console.log(categoriesNameAndCount)
 
 function CatagoryButton(props) {
-  return (
+  if(props.catButton === "All") {
+    var total = 0;
+    for(const keys in categoriesWithCounts){
+      total += categoriesWithCounts[keys];    
+    }
+    return (
       <button className={props.catButton === props.currCat ? "button-header-active"  : "button-header"}
         key={props.catButton} onClick={props.onClick}>
           {props.catButton}
+    <sup>{total}</sup>
       </button>
   )
+} else{
+  return (
+    <button className={props.catButton === props.currCat ? "button-header-active"  : "button-header"}
+      key={props.catButton} onClick={props.onClick}>
+        {props.catButton}
+        <sup>{props.count}</sup>
+    </button>
+)
+}
+  
+
   
 }
 
 function Products(props) {
   return (
-    // make a component 
-    <div key={props.product.id} className="products-header">
-          <h1 className="block">{props.product.name}</h1>
-          <h4 className="block">{props.product.price}</h4>
-          <h4 className="block">{props.product.category}</h4>
-        </div>
+    <table>
+      <tr key={props.product.id} >
+        <td>{props.product.name}</td>
+        <td >{props.product.price}</td>
+        <td>{props.product.category}</td>
+      </tr>
+    </table>
   );
 }
 
@@ -36,7 +56,7 @@ function App() {
     <div className="App">
       <header className="App-header">
           {categoriesUnique.map((category) => {
-              return <CatagoryButton catButton={category} currCat={currentCategory} onClick={() => setCategory(category)}/>
+              return <CatagoryButton catButton={category} currCat={currentCategory} count={categoriesWithCounts[category]} onClick={() => setCategory(category)}/>
             })}
    
 

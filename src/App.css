@@ -1,7 +1,7 @@
 .App {
   text-align: center;
 }
-
+/* table  */
 .button-header-active {
   background-color: crimson;
   width: 100px;
@@ -19,6 +19,23 @@
 }
 
 .products-header > div {
+  text-align: center;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  min-width: 400px;
+}
+
+table, th, td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
   text-align: center;
 }
 
